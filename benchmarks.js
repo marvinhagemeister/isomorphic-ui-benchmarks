@@ -13,15 +13,15 @@ enabledLibs = {
   preact: true,
   react: true,
   vue: true,
-  inferno: true
+  inferno: true,
 };
 
 enabledBenchmarks = {
   "search-results": true,
-  "color-picker": true
+  "color-picker": true,
 };
 
-Object.keys(enabledBenchmarks).forEach(benchmarkName => {
+Object.keys(enabledBenchmarks).forEach((benchmarkName) => {
   var benchmarkDir = path.join(benchmarksDir, benchmarkName);
 
   if (!fs.statSync(benchmarkDir).isDirectory()) {
@@ -44,12 +44,12 @@ Object.keys(enabledBenchmarks).forEach(benchmarkName => {
     serverFactory: function() {
       var serverFactory = require(path.join(benchmarkDir, "server"));
       return serverFactory.apply(this, arguments);
-    }
+    },
   };
 
   benchmarks.push(benchmark);
 
-  Object.keys(enabledLibs).forEach(libName => {
+  Object.keys(enabledLibs).forEach((libName) => {
     if (enabledLibs && !enabledLibs[libName]) {
       return;
     }
@@ -66,7 +66,7 @@ Object.keys(enabledBenchmarks).forEach(benchmarkName => {
       serverFactory: function() {
         var serverFactory = require(path.join(libDir, "server"));
         return serverFactory.apply(this, arguments);
-      }
+      },
     };
 
     benchmark.benches.push(bench);
